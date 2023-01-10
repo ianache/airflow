@@ -132,9 +132,9 @@ spec:
       imagePullSecrets:
         - name: {{ template "registry_secret" . }}
       {{- end }}
-{{- if .Values.workers.hostAliases }}
+{{- if .Values.scheduler.hostAliases }}
       hostAliases:
-{{ toYaml .Values.workers.hostAliases | indent 8 }}
+{{ toYaml .Values.scheduler.hostAliases | indent 8 }}
 {{- end }}      
       initContainers:
         {{- if .Values.scheduler.waitForMigrations.enabled }}
