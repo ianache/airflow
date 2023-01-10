@@ -132,6 +132,10 @@ spec:
       imagePullSecrets:
         - name: {{ template "registry_secret" . }}
       {{- end }}
+{{- if .Values.workers.hostAliases }}
+      hostAliases:
+{{ toYaml .Values.workers.hostAliases | indent 8 }}
+{{- end }}      
       initContainers:
         {{- if .Values.scheduler.waitForMigrations.enabled }}
         - name: wait-for-airflow-migrations
